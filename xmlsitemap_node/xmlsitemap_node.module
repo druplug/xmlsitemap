@@ -117,8 +117,8 @@ function xmlsitemap_node_field_extra_fields() {
  * @see node_type_form()
  * @see xmlsitemap_add_link_bundle_settings()
  */
-function xmlsitemap_node_form_node_type_form_alter(array &$form, array $form_state) {
-  $node_type = isset($form['#node_type']->type) ? $form['#node_type']->type : '';
+function xmlsitemap_node_form_node_type_form_alter(array &$form, array $form_state) {  
+  $node_type = isset($form['#node_type']->type) ? $form['#node_type']->type : '';  
   module_load_include('inc', 'xmlsitemap', 'xmlsitemap.admin');
   xmlsitemap_add_link_bundle_settings($form, $form_state, 'node', $node_type);
 }
@@ -132,9 +132,12 @@ function xmlsitemap_node_form_node_type_form_alter(array &$form, array $form_sta
  */
 function xmlsitemap_node_form_node_form_alter(array &$form, array &$form_state) {
   // Add the link options.
-  module_load_include('inc', 'xmlsitemap', 'xmlsitemap.admin');
-  xmlsitemap_add_form_link_options($form, 'node', $form['type']['#value'], $form['nid']['#value']);
-  $form['xmlsitemap']['#weight'] = 30;
+  $node_type = $form['type']['#value'];
+  if(variable_get("xmlsitemap_settings_node_{$node_type}_show", '0') == '1') {
+    module_load_include('inc', 'xmlsitemap', 'xmlsitemap.admin');
+    xmlsitemap_add_form_link_options($form, 'node', $form['type']['#value'], $form['nid']['#value']);
+    $form['xmlsitemap']['#weight'] = 30;
+  }
 }
 
 /**

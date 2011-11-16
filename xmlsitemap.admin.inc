@@ -613,6 +613,13 @@ function xmlsitemap_add_link_bundle_settings(array &$form, array &$form_state, $
       ),
     ),
   );
+  $form['xmlsitemap']['show'] = array(
+    '#type'          => 'checkbox',
+    '#title'         => t('Show sitemap options in node form'),
+    '#description'   => t('If enabled, the XML sitemap options will appear in node forms.'),
+    '#default_value' => variable_get("xmlsitemap_settings_{$entity}_{$bundle}", '0'),
+  );
+  
 
   $form += array('#submit' => array());
   array_unshift($form['#submit'], 'xmlsitemap_link_bundle_settings_form_submit');

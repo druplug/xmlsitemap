@@ -1020,6 +1020,7 @@ function xmlsitemap_link_bundle_settings_save($entity, $bundle, array $settings,
     if ($settings['priority'] != $old_settings['priority']) {
       xmlsitemap_link_update_multiple(array('priority' => $settings['priority']), array('type' => $entity, 'subtype' => $bundle, 'priority_override' => 0));
     }
+    variable_set("xmlsitemap_settings_{$entity}_{$bundle}_show", $settings['show']);
   }
 
   variable_set("xmlsitemap_settings_{$entity}_{$bundle}", $settings);
