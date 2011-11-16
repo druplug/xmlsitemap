@@ -617,7 +617,7 @@ function xmlsitemap_add_link_bundle_settings(array &$form, array &$form_state, $
     '#type'          => 'checkbox',
     '#title'         => t('Show sitemap options in node form'),
     '#description'   => t('If enabled, the XML sitemap options will appear in node forms.'),
-    '#default_value' => variable_get("xmlsitemap_settings_{$entity}_{$bundle}", '0'),
+    '#default_value' => variable_get("xmlsitemap_settings_{$entity}_{$bundle}_show", '0'),
   );
   
 
